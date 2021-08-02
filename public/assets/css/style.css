@@ -1521,6 +1521,7 @@ section {
 
 .portfolio-details .portfolio-details-carousel {
   position: relative;
+  /* height: 10cm; */
   z-index: 1;
 }
 
@@ -1533,7 +1534,7 @@ section {
   display: inline-block;
   margin: 0 10px 0 0;
   width: 12px;
-  height: 12px;
+  height: 5px;
   border-radius: 50%;
   background-color: #ddd !important;
 }
@@ -1577,7 +1578,7 @@ section {
 .portfolio-details .portfolio-description h2 {
   width: 50%;
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 40;
   margin-bottom: 20px;
 }
 

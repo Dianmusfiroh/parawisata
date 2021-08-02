@@ -18,7 +18,14 @@
         @endsection
 
         @section('card-body')
+        <div class="form-group row">
+            <div class="label col-md-3">Nik Guru</div>
+            <div class="col-md-9">
+                <select name="peserta[]" id="peserta" multiple class="form-control">
 
+                </select>
+            </div>
+        </div>
         <div class="form-group row">
             <div class="label col-md-3">Nama Hotel</div>
             <div class="col-md-9">
@@ -156,3 +163,29 @@ $(this).parents('tr').remove();
 //     //     });
 </script>
 {{-- @include('layouts.script.addMore') --}}
+@section('js')
+    <script>
+        $( "#peserta" ).select2({
+            ajax: {
+
+                url: "{{url('visit/search')}}",
+                dataType: 'json',
+                delay: 250,
+                data: function (term, page) {
+                    return {
+                        search: term.term, // search term
+                        searchFields:'name:like'
+
+                    };
+                },
+                processResults: function (response) {
+                    return {
+                        results: response
+                    };
+                },
+                cache: true
+            }
+
+        });
+    </script>
+@endsection

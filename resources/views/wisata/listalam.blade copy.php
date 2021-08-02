@@ -1,38 +1,42 @@
 
-
 @extends('layouts.conten')
 @extends('layouts.hd')
-
-
 
 @section('card-header-extra')
 
 @section('title')
 @section('card-body')
+@foreach ($nama as $item )
 
 <div class="col">
     <div class="card" style="background-color: grey;">
         <div class="card-body border-0 text-center  text-white">
-            <h2>Event</h2>
+            <h2>{{$item->name}}</h2>
             <h3></h3>
-        </div>
+@endforeach
+</div>
     </div>
 </div>
 <div>
 <h1></h1>
 </div>
 
-  @foreach ( $events as $item )
+  @foreach ( $alam as $item )
 
+
+  <div class="container">
 
     <div class="con floating-box">
         <a href="{{ route($modul.'.show', $item->id) }}">
- <img src="{{ asset($item->pic) }}" alt="Avatar" class="image">
+ <img src="{{ asset($item->pic1) }}" alt="Avatar" class="image">
         <div class="overlay">{{ $item->name }}</div>
     </a>
       </div>
+    </div>
 @endforeach
 </div>
+
+
 
 
  @endsection

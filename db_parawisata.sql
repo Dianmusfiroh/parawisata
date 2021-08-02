@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2021 at 12:31 AM
+-- Generation Time: Aug 02, 2021 at 01:41 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -21,6 +21,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_parawisata`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coment`
+--
+
+CREATE TABLE `coment` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `location` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `messege` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coment`
+--
+
+INSERT INTO `coment` (`id`, `location`, `email`, `subject`, `messege`) VALUES
+(1, 'dian musfiroh', 'admin@sipenas.com', 'ewrerwer', NULL),
+(2, 'Dian', 'admin@sipenas.com', 'sfdddddddd', 'dsffffffffffffffffffff'),
+(3, 'sadddddddd', 'dianmusfiroh90@gmail.com', 'saddddddddddddd', 'dsaaaaaaaaaaaa'),
+(4, 'adssssssss', 'dianmusfiroh90@gmail.com', 'adsssssssss', 'sdaaaaaaaaaaa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `location` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `call` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `location`, `email`, `call`) VALUES
+(1, 'asdas', 'asds', '0927812');
 
 -- --------------------------------------------------------
 
@@ -43,7 +87,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `nama`, `day`, `time`, `location`, `desc`, `pic`) VALUES
-(1, 'asdjkhasdkj', '2021-08-02', '06:24:00', 'afddf', 'asfddasfd', '/uploads/activity bendahara.png_3553');
+(1, 'asd', '2021-08-02', '09:17:00', 'asddsa', 'sdaa', '/uploads/activity admin.png_185'),
+(2, 'af,sdm', NULL, NULL, NULL, NULL, '/uploads/activity operator dinas.png_7520');
 
 -- --------------------------------------------------------
 
@@ -91,6 +136,14 @@ CREATE TABLE `hotel` (
   `fasilitas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `hotel`
+--
+
+INSERT INTO `hotel` (`id`, `name`, `address`, `info`, `harga`, `jarak`, `pic1`, `pic2`, `pic3`, `pic4`, `fasilitas`) VALUES
+(1, 'dian musfiroh', 'ads', 'dian', 'dasd', 'asdds', '/uploads/activity operator dinas.png_55575000', '/uploads/activity operator skolah (1).png_31965000', '/uploads/', '/uploads/', '[\"sarapan pagi\"]'),
+(2, 'musfieoh', NULL, NULL, NULL, NULL, '/uploads/', '/uploads/', '/uploads/', '/uploads/', 'null');
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +154,14 @@ CREATE TABLE `kategori_wisata` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kategori_wisata`
+--
+
+INSERT INTO `kategori_wisata` (`id`, `name`) VALUES
+(1, 'Wisata Alam'),
+(2, 'wisata');
 
 -- --------------------------------------------------------
 
@@ -121,6 +182,13 @@ CREATE TABLE `kuliner` (
   `pic3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kuliner`
+--
+
+INSERT INTO `kuliner` (`id`, `name`, `address`, `menu`, `info`, `jarak`, `harga`, `pic1`, `pic2`, `pic3`, `pic4`) VALUES
+(1, 'admin', 'asdsd', 'adsasd', 'adsdas', 'dasdas', 'adsds', '/uploads/activity bendahara.png_35635000', '/uploads/', '/uploads/', '/uploads/');
 
 -- --------------------------------------------------------
 
@@ -149,7 +217,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2021_06_14_023940_create_views_table', 1),
 (9, '2021_06_21_000000_create_kategori_wisata_table', 1),
 (10, '2021_06_21_000005_create_wisata_table', 1),
-(11, '2021_06_28_000007_create_event_table', 1);
+(11, '2021_06_28_000007_create_event_table', 1),
+(12, '2021_08_02_000000_create_coment_table', 2),
+(13, '2021_08_02_000005_create_contact_table', 2);
 
 -- --------------------------------------------------------
 
@@ -185,7 +255,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', NULL, '$2y$10$ZfqV0ycmEa2oxmowHwTpO.DBv.X38nwXv38c3rNUQlUHLnzNgwwCy', NULL, '2021-08-01 13:59:32', '2021-08-01 13:59:32');
+(1, 'admin', 'admin@admin.com', NULL, '$2y$10$kxfwATvx8GwZOfNDKESWqONlAx7e0Zsg9ki7pNKWcC10si4pj3VpS', NULL, '2021-08-01 16:37:19', '2021-08-01 16:37:19');
 
 -- --------------------------------------------------------
 
@@ -224,17 +294,38 @@ CREATE TABLE `wisata` (
   `name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jarak` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pic4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jarak` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kategori_wisata_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `wisata`
+--
+
+INSERT INTO `wisata` (`id`, `name`, `address`, `deskripsi`, `pic1`, `pic2`, `pic3`, `pic4`, `jarak`, `kategori_wisata_id`) VALUES
+(1, 'admin', 'sakdl', 'skf', '/uploads/activity operator dinas.png_49285000', '/uploads/', '/uploads/', '/uploads/', 'ksl', 1),
+(2, 'jjjjjjjjj', 'jjjjjjjjjj', 'jjjjjjjjj', '/uploads/admin.png_85835000', '/uploads/', '/uploads/', '/uploads/', 'jjjjjjjjjjj', 1),
+(3, 'asdddddd', 'ddddddddddddd', 'dddddddddddd', '/uploads/interview (1).png_20835000', '/uploads/', '/uploads/', '/uploads/', 'dddddddddd', 2);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `coment`
+--
+ALTER TABLE `coment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `event`
@@ -316,10 +407,22 @@ ALTER TABLE `wisata`
 --
 
 --
+-- AUTO_INCREMENT for table `coment`
+--
+ALTER TABLE `coment`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -337,25 +440,25 @@ ALTER TABLE `fasilitas`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kategori_wisata`
 --
 ALTER TABLE `kategori_wisata`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kuliner`
 --
 ALTER TABLE `kuliner`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -379,7 +482,7 @@ ALTER TABLE `visit`
 -- AUTO_INCREMENT for table `wisata`
 --
 ALTER TABLE `wisata`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

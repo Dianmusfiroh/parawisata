@@ -73,14 +73,20 @@ class WisatasController extends Controller
         // dd($category);
         return view('wisata.create',compact('modul','category'));
     }
-    public function listAlam()
+    public function listAlam($id)
     {
+        $category = $this->categoryRepository->find($id);
+        // dd($id);
         $wisatum = $this->repository->all();
         $modul = $this->modul;
         $budaya = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=2"));
-        $alam = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=1"));
+        $alam = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id='$id'"));
+        $tiga = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=3"));
+        $empat = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=4"));
+        $lima = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=5"));
+        $nama = DB::select(DB::raw("SELECT * FROM kategori_wisata WHERE id='$id'"));
 
-        return view('wisata.listalam',compact('modul','wisatum','alam','budaya'));
+        return view('wisata.listalam',compact('modul','wisatum','alam','budaya','tiga','empat','lima','category','nama'));
     }
     public function listBudaya()
     {
@@ -88,8 +94,10 @@ class WisatasController extends Controller
         $modul = $this->modul;
         $budaya = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=2"));
         $alam = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=1"));
-
-        return view('wisata.listbudaya',compact('modul','wisatum','alam','budaya'));
+        $tiga = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=3"));
+        $empat = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=4"));
+        $lima = DB::select(DB::raw("SELECT * FROM wisata WHERE kategori_wisata_id=5"));
+        return view('wisata.listbudaya',compact('modul','wisatum','alam','budaya','tiga','empat','lima'));
     }
     /**
      * Store a newly created resource in storage
@@ -167,10 +175,10 @@ class WisatasController extends Controller
         $w->deskripsi = $request->deskripsi;
         $w->kategori_wisata_id = $request->kategori_wisata_id;
         $w->jarak = $request->jarak;
-        $w->pic = '/uploads/' . $name1;
-        $w->pic = '/uploads/' . $name2;
-        $w->pic = '/uploads/' . $name3;
-        $w->pic = '/uploads/' . $name4;
+        $w->pic1 = '/uploads/' . $name1;
+        $w->pic2 = '/uploads/' . $name2;
+        $w->pic3 = '/uploads/' . $name3;
+        $w->pic4 = '/uploads/' . $name4;
 
         $w->save();
 
@@ -188,7 +196,7 @@ class WisatasController extends Controller
         $wisatum = $this->repository->find($id);
         $category = $this->categoryRepository->all();
         $modul = $this->modul;
-        $wis = DB::select(DB::raw("SELECT w.name AS name, w.address address, w.deskripsi deskripsi, c.name AS kategori, w.pic FROM wisata w JOIN kategori_wisata c ON w.kategori_wisata_id= c.id WHERE w.id= $id"));
+        $wis = DB::select(DB::raw("SELECT w.name AS name, w.address address, w.deskripsi deskripsi, c.name AS kategori, w.pic1 , w.pic2 , w.pic3, w.pic4 FROM wisata w JOIN kategori_wisata c ON w.kategori_wisata_id= c.id WHERE w.id= $id"));
         if (request()->wantsJson()) {
 
             return response()->json([
@@ -265,10 +273,10 @@ class WisatasController extends Controller
             $w->deskripsi = $request->deskripsi;
             $w->kategori_wisata_id = $request->kategori_wisata_id;
             $w->jarak = $request->jarak;
-            $w->pic = '/uploads/' . $name1;
-            $w->pic = '/uploads/' . $name2;
-            $w->pic = '/uploads/' . $name3;
-            $w->pic = '/uploads/' . $name4;
+            $w->pic1 = '/uploads/' . $name1;
+            $w->pic2 = '/uploads/' . $name2;
+            $w->pic3 = '/uploads/' . $name3;
+            $w->pic4 = '/uploads/' . $name4;
 
 
             $w->update();

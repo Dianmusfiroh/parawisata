@@ -26,12 +26,13 @@ class Wisata extends Model implements Transformable
         'name',
         'address',
         'deskripsi',
-        'jarak',
-        'kategori_wisata_id',
         'pic1',
         'pic2',
         'pic3',
-        'pic4'
+        'pic4',
+        'jarak',
+        'kategori_wisata_id'
+
     ];
     public function category()
     {

@@ -26,11 +26,11 @@ Auth::routes([
 Route::get('/home', function () {
     return view('home');
 });
-Route::get('/logout', function () {
-    return view('login');
-});
+// Route::get('/logout', function () {
+//     return view('login');
+// });
 
-Route::get('/wisata/listalam', 'WisatasController@listAlam')->name('listAlam');
+Route::get('/wisata/listalam/{id}', 'WisatasController@listAlam')->name('listAlam');
 Route::get('/wisata/listbudaya', 'WisatasController@listBudaya')->name('listBudaya');
 Route::get('/wisata/show', 'WisatasController@show')->name('show');
 Route::get('/hotel/list', 'HotelsController@list')->name('list');
@@ -50,6 +50,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/api', 'SmsapisController@index');
 Route::resource('/hotel', 'HotelsController');
 Route::resource('/visitt', 'VisitsController');
+Route::resource('/visit', 'VisitsController');
+Route::get('/visit/search', 'VisitsController@search');
+Route::resource('/contact', 'ContactsController');
+Route::resource('/comment', 'CommentsController');
 Route::resource('/category', 'CategoriesController');
 Route::resource('/event', 'EventsController');
 Route::resource('/wisata', 'WisatasController');

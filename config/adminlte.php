@@ -277,11 +277,16 @@ return [
             'url'  => '/event',
             'icon' => 'fas fa-images',
         ],
-        // [
-        //     'text' => 'Profil',
-        //     'url'  => '/galery',
-        //     'icon' => 'fas fa-images',
-        // ],
+        [
+            'text' => 'Kontak',
+            'url'  => '/contact',
+            // 'icon' => 'fas fa-images',
+        ],
+        [
+            'text' => 'Komentar',
+            'url'  => '/comment',
+            // 'icon' => 'fas fa-images',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

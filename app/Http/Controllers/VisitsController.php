@@ -12,11 +12,15 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\VisitCreateRequest;
 use App\Http\Requests\VisitUpdateRequest;
+use App\Repositories\CategoryRepository;
+use App\Repositories\ContactRepository;
+use App\Repositories\EventRepository;
 use App\Repositories\GaleryRepository;
 use App\Repositories\HotelRepository;
 use App\Repositories\KulinerRepository;
 use App\Repositories\VisitRepository;
 use App\Repositories\WisataRepository;
+use App\Validators\EventValidator;
 use App\Validators\VisitValidator;
 use Illuminate\Support\Facades\DB;
 
@@ -45,6 +49,9 @@ class VisitsController extends Controller
      */
     public function __construct(VisitRepository $repository,
     VisitValidator $validator, HotelRepository $hotelRepository,
+    EventRepository $eventRepository,
+    CategoryRepository $categoryRepository,
+    ContactRepository $contactRepository,
     WisataRepository $wisataRepository, KulinerRepository $kulinerRepository,
     GaleryRepository $galeryRepository)
     {
@@ -54,10 +61,15 @@ class VisitsController extends Controller
         $this->wisataRepository = $wisataRepository;
         $this->kulinerRepository = $kulinerRepository;
         $this->galeryRepository = $galeryRepository;
+        $this->eventRepository = $eventRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->contactRepository = $contactRepository;
         $this->modul = 'visit';
         $this->w = 'wisata';
         $this->k = 'kuliner';
+        $this->e = 'event';
         $this->h = 'hotel';
+        $this->c = 'comment';
         // $this->g = 'galery';
 
     }
@@ -76,11 +88,17 @@ class VisitsController extends Controller
         $hotel = $this->hotelRepository->all();
         $wisata = $this->wisataRepository->all();
         $kuliner = $this->kulinerRepository->all();
+        $event = $this->eventRepository->all();
+        $category = $this->categoryRepository->all();
+        $contact =$this->contactRepository->all();
+        // dd($event);
         // $galery = $this->galeryRepository->all();
         // $post= $this->View;
         $w = $this->w;
         $k = $this->k;
         $h = $this->h;
+        $e = $this->e;
+        $c = $this->c;
         // $g = $this->g;
         // dd($visit);
         $n =1;
@@ -88,7 +106,7 @@ class VisitsController extends Controller
        $up_count= DB::select(DB::raw("UPDATE visit AS v SET visit_count=visit_count+1"));
 // dd($up_count);
 $find_count = DB::select(DB::raw("SELECT visit_count as v FROM visit"));
-
+$dt = DB::table('hotel')->paginate(10);
         if (request()->wantsJson()) {
 
             return response()->json([
@@ -101,7 +119,43 @@ $find_count = DB::select(DB::raw("SELECT visit_count as v FROM visit"));
 // views($visit)->record();
 // views($visit)->count();
         // views($visit)->record();
-        return view('visitt.index', compact('up_count','find_count','visit','modul','hotel','wisata','kuliner','w','k','h'));
+        return view('visit.index', compact('dt','c','contact','category','event','e','w','up_count','find_count','visit','modul','hotel','wisata','kuliner','w','k','h'));
+    }
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $dt = DB::table('hotel')
+        ->where('name','like',"%".$search."%")
+        ->paginate();
+
+        return view('visit.index',['hotel' => $dt]);
+        // $search = request()->search;
+
+        // $response = array();
+        // $g=$this->hotelRepository->scopeQuery(function ($query) use($search){
+        //     return $query->select('name')->from('hotel')->get();
+        //     })->where('name','LIKE','%'.$search.'%');
+
+    // })->all(['name']);
+    // if ($gtts->count() > 0) {
+        // foreach ($g as $item) {
+        //         $response[] = array(
+        //             "id" => $item->id,
+        //             "text" => $item->name,
+        //         );
+        // }
+        // $cari = DB::table('event','wisata','hotel','kuliner')
+        // ->where('name','LIKE','%'.$search.'%')
+        // ->all(['name']);
+        // foreach ($cari as $item){
+        //     $response[]= array(
+        //         "text" => $item->name,
+        //     );
+        // }
+        // if (request()->is('api*') || request()->ajax()) {
+        //     return response()->json($response);
+        // }
     }
     public function tes(Visit $visit)
     {
@@ -118,6 +172,7 @@ $find_count = DB::select(DB::raw("SELECT visit_count as v FROM visit"));
         $k = $this->k;
         $h = $this->h;
         $g = $this->g;
+        $e = $this->e;
         // dd($visit);
         $n =1;
 
@@ -137,7 +192,7 @@ $find_count = DB::select(DB::raw("SELECT visit_count as v FROM visit"));
 // views($visit)->record();
 // views($visit)->count();
         // views($visit)->record();
-        return view('visit.tes', compact('up_count','find_count','visit','modul','hotel','wisata','kuliner','w','k','h'));
+        return view('visit.tes', compact('up_count','find_count','visit','modul','hotel','wisata','kuliner','w','k','h','e','event'));
     }
 
     /**

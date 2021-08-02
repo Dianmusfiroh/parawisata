@@ -16,7 +16,7 @@
         <div class="form-group row">
             <div class="label col-md-3">Nama Kategori </div>
             <div class="col-md-9">
-        <input type="text" name="name" id="name" class="form-control mt-2" placeholder="Masukan Nama Kuliner">
+        <input type="text" name="name" id="name" class="form-control mt-2" placeholder="Masukan Nama Kategori">
             </div>
         </div>
 

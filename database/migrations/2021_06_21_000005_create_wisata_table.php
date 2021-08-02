@@ -26,11 +26,12 @@ class CreateWisataTable extends Migration
             $table->string('name', 45)->nullable();
             $table->text('address')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->text('jarak')->nullable();
             $table->string('pic1', 255)->nullable();
             $table->string('pic2', 255)->nullable();
             $table->string('pic3', 255)->nullable();
             $table->string('pic4', 255)->nullable();
+            $table->text('jarak')->nullable();
+
             $table->integer('kategori_wisata_id')->unsigned();
 
             $table->index(["kategori_wisata_id"], 'fk_wisata_kategori_wisata1_idx');
